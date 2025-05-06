@@ -1,26 +1,24 @@
-import { BrowserRouter } from "react-router-dom"
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas} from './components'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Recipes from "./pages/Recipes";
+import Profile from "./pages/Profile";
+import Header from "./components/Header"; // ✅
+import Auth from "./pages/Auth";
+
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div className="relative z-0 bg-primary">
-        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-          <Navbar />
-          <Hero />
-        </div>
-        <About/>
-        <Experience />
-        <Tech />
-        <Works />
-        <Feedbacks />
-        <div className="relative z-0">
-          <Contact/>
-          <StarsCanvas/>
-        </div>
-      </div>
-    </BrowserRouter>
-  )
-}
+    <Router>
+      <Header /> {/* ✅ Виводимо шапку всюди */}
+      <Routes>
+      <Route path="/auth" element={<Auth />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
